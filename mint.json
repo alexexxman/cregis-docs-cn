@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
+  "name": "Cregis Developer",
   "logo": {
     "dark": "/logo/dark.svg",
     "light": "/logo/light.svg"
@@ -17,75 +17,96 @@
   },
   "topbarLinks": [
     {
-      "name": "Support",
-      "url": "mailto:hi@mintlify.com"
+      "name": "客服支持",
+      "url": "https://chat.bytrack.xyz?appId=7tAbr779"
     }
   ],
   "topbarCtaButton": {
-    "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+    "name": "官网",
+    "url": "https://www.cregis.com/zh/"
   },
   "tabs": [
     {
-      "name": "API Reference",
+      "name": "API References",
       "url": "api-reference"
+    },
+    {
+      "name": "SDKs and Tools",
+      "url": "sdk-tool"
+    },
+    {
+      "name": "FAQs",
+      "url": "faqs"
     }
   ],
   "anchors": [
-    {
-      "name": "Documentation",
-      "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
-    },
-    {
-      "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
-    },
-    {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
-    }
   ],
   "navigation": [
     {
-      "group": "Get Started",
+      "group": "概览",
+      "pages": ["introduction", "usecases", "integration"]
+    },
+    {
+      "group": "功能描述",
       "pages": [
-        "introduction",
-        "quickstart",
-        "development"
+        "user-recharge",
+        "withdrawal-payment"
       ]
     },
     {
-      "group": "Essentials",
+      "group": "通用接口格式",
       "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
+        "api-reference/request",
+        "api-reference/response",
+        "api-reference/signature",
+        "api-reference/return-codes",
+        "api-reference/currency-identifiers"
       ]
     },
     {
-      "group": "API Documentation",
+      "group": "请求",
       "pages": [
-        "api-reference/introduction"
+        "api-reference/request-apis/address-generate",
+        "api-reference/request-apis/payout-create",
+        "api-reference/request-apis/payout-query",
+        "api-reference/request-apis/validation-address-existence",
+        "api-reference/request-apis/validation-address-legality",
+        "api-reference/request-apis/currency-query"
       ]
     },
     {
-      "group": "Endpoint Examples",
+      "group": "回调",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        "api-reference/callback/address-deposit",
+        "api-reference/callback/payout"
+      ]
+    },
+    {
+      "group": "SDK",
+      "pages": [
+        "sdk-tool/sdk"
+      ]
+    },
+    {
+      "group": "工具",
+      "pages": [
+        "sdk-tool/tool"
+      ]
+    },
+    { 
+      "group": "FAQs",
+      "pages": [
+        "faqs/Address",
+        "faqs/Coin",
+        "faqs/Transaction",
+        "faqs/APIKey",
+        "faqs/Callback"
       ]
     }
   ],
   "footerSocials": {
-    "twitter": "https://twitter.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
+    "twitter": "https://twitter.com/0xCregis",
+    "github": "https://github.com/0xcregis",
+    "linkedin": "https://linktr.ee/cregisofficial"
   }
 }
