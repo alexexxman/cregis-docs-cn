@@ -30,17 +30,20 @@
     "name": "官网",
     "url": "https://www.cregis.com/zh/"
   },
+  "primaryTab": {
+    "name": "文档"
+  },
   "tabs": [
     {
-      "name": "API References",
+      "name": "API 参考",
       "url": "api-reference"
     },
     {
-      "name": "SDKs and Tools",
+      "name": "SDK和工具",
       "url": "sdk-tool"
     },
     {
-      "name": "FAQs",
+      "name": "常见问题",
       "url": "faqs"
     }
   ],
