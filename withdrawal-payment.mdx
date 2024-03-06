@@ -25,11 +25,8 @@ title: 提币付款
    * 如果不支持，则无法生成提币订单
 2. 验证目标地址有效性
    * 确定目标地址在目标链上[是否为有效地址](/api-reference/request-apis/validation-address-legality)
-3. 验证地址归属性
-   * [Determine if the target address belongs to the same project](/api-reference/request-apis/validation-address-existence) (pid).
-   * If restricted to internal transfers, terminate the process at this point.
-4. 发起提币/支付
+3. 发起提币/支付
    * 发起[提币申请](/api-reference/request-apis/payout-create) 提交给企业钱包 
-5. 提币查询/监听
+4. 提币查询/监听
    * 用户发起提现后，通知回调地址会收到提现状态通知。
    * 用户通过 [查询订单](/api-reference/request-apis/payout-query) 获取订单信息
