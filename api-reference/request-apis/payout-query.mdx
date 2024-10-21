@@ -58,6 +58,17 @@ POST /api/v1/payout/query
 | block_height   | string         | 区块高度           |
 | block_time     | integer(int64) | 区块时间             |
 
+#### Response `status` 类型
+| 状态(status) | 描述            |
+| ------ | ---------------------- |
+| 0      | 待审批     |
+| 3      | 审批取消      |
+| 4      | 审批驳回 |
+| 5      | 待签名     |
+| 1      | 签名通过     |
+| 2      | 签名驳回     |
+| 6      | 交易成功     |
+| 7      | 交易失败     |
 
 ###### 返回示例
 
