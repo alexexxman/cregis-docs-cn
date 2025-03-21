@@ -1,11 +1,11 @@
 ---
-title: '订单 > 查询支持法币'
-description: '查询系统支持的法币信息'
+title: '查询支持加密货币'
+description: '查询系统支持的加密数字货币信息'
 ---
 
 ### 接入API
 
-POST /api/v1/order_fiat_currency
+POST /api/v1/order_crypto_currency
 
 ### 请求
 
@@ -16,6 +16,7 @@ POST /api/v1/order_fiat_currency
 | nonce      | string         | 是     | 6位随机字符串 |
 | timestamp  | integer(int64) | 是     | 时间戳            |
 | sign       | string         | 是     | 签名            |
+
 
 ###### 请求示例
 
@@ -42,10 +43,11 @@ POST /api/v1/order_fiat_currency
 
 | 名称           | 类型           | 描述            |
 |----------------|----------------|------------------------|
-| currency_code      | string         | 货币代码【例如CNY、HKD】             |
-| currency_decimals   | string        | 货币精度               |
-| currency_symbol   | string         | 货币符号【例如￥、$】               |
-| currency_name | string         | 货币名称 【例如 US Dollar】              |
+| token_symbol      | string         | 货币单位             |
+| blockchain   | string         | 货币网络               |
+| token_decimals   | string         | 货币精度               |
+| token_name | string         | 币种名称              |
+| logo_url   | string | 币种logo    |
 
 
 ###### 返回示例
@@ -56,16 +58,18 @@ POST /api/v1/order_fiat_currency
     "msg": "ok",
     "data": [
         {
-            "currency_code": "CNY",
-            "currency_decimals": 2,
-            "currency_symbol": "￥",
-            "currency_name": "RMB"
+            "token_symbol": "USDT",
+            "blockchain": "BNB-BSC",
+            "token_decimals": 18,
+            "token_name":"USDT-BEP20",
+            "logo_url":""
         },
         {
-            "currency_code": "HKD",
-            "currency_decimals": 2,
-            "currency_symbol": "$",
-            "currency_name": "Dollar"
+            "token_symbol": "USDT",
+            "blockchain": "TRON",
+            "token_decimals": 6,
+            "token_name":"USDT-TRC20",
+            "logo_url":""
         }
     ]
 }
