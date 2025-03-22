@@ -52,7 +52,7 @@ HTTP POST application/json
 | cancel_time        | integer(int64)  | 订单取消时间【13位时间戳】         |
 | transact_time        | integer(int64)  | 订单支付完成时间【13位时间戳】         |
 | valid_time        | integer  | 订单超时时间【单位/分钟】         |
-| status        | string  | 订单状态【new -待支付 paid-被调用方收到付款 expired-订单超出有效时间】         |
+| status        | string  | 订单状态【new-待支付,paid-已支付，expired-订单超出有效时间，paid_over-付款超出订单金额  paid_partial-付款小于订单金额】         |
 | remark        | string  | 订单备注信息         |
 | tx_id        | string  | 交易hash         |
 | payer_id        | string  | 付款人id标识         |
