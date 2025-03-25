@@ -1,0 +1,82 @@
+---
+title: '快速开始'
+description: '快速了解如何使用 Cregis 开发者 API'
+---
+
+## 下载 Cregis PC 客户端
+
+访问下载链接 [https://www.cregis.com/download](https://www.cregis.com/download)
+
+选择您的操作系统以下载对应的Cregis安装包，安装包大小约为：
+- **Mac**: 148M
+- **Windows**: 105M
+
+<p align="center">
+    <img
+        src="/images/cregis-desktop.avif"
+        alt="Cregis Desktop App" width="auto" height="auto"
+    />
+</p>
+
+## 注册账号、登录
+
+详情参考 [Cregis Wallet Guide](https://support.cregis.com/cregis-wallet-guide/zh-cn/xin-shou-ru-men/zhang-hao-zhu-ce-ji-deng-lu)## 生成API Key
+1. 注册 Cregis 账户
+2. 绑定 Google 验证
+3. 登录 Cregis 账户
+
+## 生成 API Key
+1. 打开 Cregis App
+2. 在"钱包"中，创建名为 "my-wallet" 的钱包
+<p align="center">
+    <img
+        src="/images/frontpage-wallet.jpg"
+        alt="frontpage wallet" width="auto" height="auto"
+    />
+</p>
+<p align="center">
+    <img
+        src="/images/create-wallet.png"
+        alt="cregis wallet" width="auto" height="auto"
+    />
+</p>
+3. 在"项目"中， 创建名为 "my-first-project" 的项目
+<p align="center">
+    <img
+        src="/images/frontpage-project.jpg"
+        alt="frontpage project" width="auto" height="auto"
+    />
+</p>
+地址生成的场景最简单，以此为例:
+勾选 "生成地址", 绑定钱包 "my-wallet", 确认
+<p align="center">
+    <img
+        src="/images/create-project.png"
+        alt="create project" width="auto" height="auto"
+    />
+</p>
+4. 系统将自动生成您的 API Key, 点击API Key 小按钮，查看详情
+<p align="center">
+    <img
+        src="/images/got-api-key.jpg"
+        alt="got api key" width="auto" height="auto"
+    />
+</p>
+<p align="center">
+    <img
+        src="/images/show-api-key.png"
+        alt="show api key" width="auto" height="auto"
+    />
+</p>
+请妥善保管您的 **API Key**，**网关服务器域名**，**项目编号**，不要与他人分享。
+
+## 测试 API Key
+
+1. [选择您所需要的SDK](/sdk-tool/sdk): Jave, Go, PHP, C#
+
+2. 准备SDK所需的3个关键信息
+API Key, 网关服务器域名, 项目编号
+
+3. [Java测试用例](https://github.com/0xcregis/cregis-java-sdk/blob/master/cregis-sdk-core/src/test/java/com/cregis/core/HutoolClientTest.java)
+
+了解HTTP Request构造细节，请参阅 [请求说明](/api-reference/request)
