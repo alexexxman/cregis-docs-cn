@@ -16,7 +16,7 @@
           {
             "group": "概览",
             "pages": [
-              "introduction",
+              "quickstart",
               "usecases",
               "integration"
             ]
@@ -72,15 +72,7 @@
             ]
           },
           {
-            "group": "支付引擎V1",
-            "pages": [
-              "api-reference/request-apis/payment/payment-create",
-              "api-reference/request-apis/payment/payment-query",
-              "api-reference/callback/payment"
-            ]
-          },
-          {
-            "group": "支付引擎V2",
+            "group": "支付引擎",
             "pages": [
               "api-reference/request-apis/payment/payment-v2-create",
               "api-reference/request-apis/payment/payment-v2-query",
