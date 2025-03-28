@@ -17,7 +17,7 @@ POST /api/v1/payout
 | currency       | string         | 是      | 币种标识|
 | address        | string         | 是      | 提币地址            |
 | amount         | string         | 是      | 金额             |
-| callback_url   | string         | 是      | 回调地址,该提币信息被处理时会向对应的callback_url发起回调通知,回调详情请参考 [回调 > 提币](/api-reference/callback/payout) 部分    |
+| callback_url   | string         | 是      | 回调地址,该提币信息被处理时会向对应的callback_url发起回调通知,回调详情参考 [提币通知](/api-reference/callback/payout)   |
 | third_party_id | string         | 是      | 调用方业务编号 |
 | remark         | string         | 否      | 备注             |
 | memo           | string         | 否      | memo、tag等上链信息，仅Ton、Xrp支持   |
