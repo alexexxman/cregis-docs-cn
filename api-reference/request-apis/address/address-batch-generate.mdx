@@ -16,7 +16,7 @@ POST /api/v1/batch/address/create
 | pid           | integer(int64)  | 是      | 项目编号   |
 | chain_id      | string          | 是      | 链编号chain_id      |
 | alias         | string          | 否      | 显示名称，如果填写该值，长度限制在1-40个字符  |
-| callback_url  | string          | 否      | 回调地址,该地址接收资金时会向对应的callback_url发起交易回调通知,回调详情请参考 [回调 > 地址收款](/api-reference/callback/address-deposit) 部分。  |
+| callback_url  | string          | 否      | 回调地址,该地址接收资金时会向对应的callback_url发起交易回调通知,回调详情参考 [地址充值通知](/api-reference/callback/address-deposit)  |
 | number       | string         | 是       | 创建地址的数量值，在1-100之间，包含100                       |
 | nonce         | string          | 是      | 6位随机字符串 |
 | timestamp     | integer(int64)  | 是      | 时间戳     |

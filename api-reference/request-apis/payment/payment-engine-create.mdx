@@ -24,9 +24,9 @@ POST /api/v2/checkout
 | payer_id       | string         | 是     | 付款⼈id标识【不超过32位字符】            |
 | payer_name       | string         | 否     | 付款⼈姓名【不超过32位字符】            |
 | payer_email       | string         | 否     | 付款⼈邮箱            |
-| tokens | ArrayString | 否 | 通过在tokens字段中输入相应的token_name来控制您允许客户支付的代币 <br /> 如果此字段留空，则表示您接受Cregis支持的所有代币作为客户的支付代币。可以通过 POST /api/v1/order_crypto_currency获得Cregis支付引擎中所有支持的代币 <br /> 示例: ["USDT-TRC20","USDT-BEP20"]  |
+| tokens | ArrayString | 否 | 通过在tokens字段中输入相应的token_name来控制您允许客户支付的代币 <br /> 如果此字段留空，则表示您接受Cregis支持的所有代币作为客户的支付代币。可以通过 [查询支持加密货币](/api-reference/request-apis/payment/payment-crypto-currency)获得Cregis支付引擎中所有支持的代币 <br /> 示例: ["USDT-TRC20","USDT-BEP20"]  |
 | stablecoin_realtime_rate | string | 否 | 默认值：false <br />false：代表 USDT/USDC 兑 USD 使用固定1:1的汇率 <br />true：代表 USDT/USDC兑USD 使用从CoinMarketCap上获取的实时汇率  |
-| callback_url   | string         | 否     | 回调通知地址：Cregis 会向此地址发送付款状态更新的 webhook 通知     |
+| callback_url   | string         | 否     | 回调通知地址：Cregis 会向此地址发送付款状态更新的 webhook 通知,回调详情参考 [订单支付通知](/api-reference/callback/payment-engine)     |
 | remark       | string         | 否     | 商户可对这笔支付订单做出备注【不超过256位字符】            |
 | valid_time       | integer         | 否     | 设置订单超时时间【单位/分钟】，区间【10-60】，如果未填写，系统默认设置为30分钟；            |
 | success_url | string | 是 | 付款成功后，点击“返回商店”按钮，付款人将被重定向到此 URL。请确保 URL 中包含“http://”或“https://”      |
