@@ -1,0 +1,49 @@
+---
+title: '快速开始'
+description: '快速了解项目API'
+---
+
+## 场景说明
+
+项目API支持创建地址进行充值和提币付款两种类型业务，常用于交易所等类型平台用户的出入金管理 <br/>
+
+### _地址充值_
+
+> 每次调用成功将生成新的地址，可在用户注册成功时调用，将生成的地址设置为用户的固定充值地址，当接收到该地址的链上充值通知时，给该用户进行充值。
+> 注意：EVM类型地址可以公用同一个地址，例如：USDT-BEP20、USDT-ERC20可以都使用ETH地址进行充值
+
+1、创建钱包 <br/>
+2、创建项目，选择‘生成地址’
+<p align="center">
+    <img
+        src="../../../images/api-address.png"
+        alt="frontpage project" width="auto" height="auto"
+    />
+</p>
+3、获取API key等信息
+<p align="center">
+    <img
+        src="../../../images/api-develop.png"
+        alt="frontpage project" width="auto" height="auto"
+    />
+</p>
+
+### _提币_
+
+> 平台用户出金提现时调用该API，最终在CREGIS钱包中签名后交易将上链，可根据交易上链后的实际结果通知来进行扣除用户在平台中的资金
+
+1、策略设置（可选），<a href='https://support.cregis.com/cregis-wallet-guide/zh-cn/risk_management/policy_engine' target="_blank">了解策略</a> <br/>
+2、创建项目，选择‘转出’
+<p align="center">
+    <img
+        src="../../../images/api-payout.png"
+        alt="frontpage project" width="auto" height="auto"
+    />
+</p>
+3、获取API key等信息
+<p align="center">
+    <img
+        src="../../../images/api-develop.png"
+        alt="frontpage project" width="auto" height="auto"
+    />
+</p>
