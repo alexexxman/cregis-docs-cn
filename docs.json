@@ -46,7 +46,6 @@
           {
             "group": "项目",
             "pages": [
-              "api-reference/request-apis/global/quickstart",
               "api-reference/request-apis/global/currency-query",
               "api-reference/request-apis/global/trade-query",
               {
@@ -73,7 +72,6 @@
           {
             "group": "支付引擎",
             "pages": [
-              "api-reference/request-apis/payment/quickstart",
               "api-reference/request-apis/payment/payment-fiat-currency",
               "api-reference/request-apis/payment/payment-crypto-currency",
               "api-reference/request-apis/payment/payment-engine-create",
