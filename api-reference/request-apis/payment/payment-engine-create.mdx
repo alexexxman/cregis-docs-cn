@@ -28,7 +28,7 @@ POST /api/v2/checkout
 | stablecoin_realtime_rate | string | 否 | 默认值：false <br />false：代表 USDT/USDC 兑 USD 使用固定1:1的汇率 <br />true：代表 USDT/USDC兑USD 使用从CoinMarketCap上获取的实时汇率  |
 | callback_url   | string         | 否     | 回调通知地址：Cregis 会向此地址发送付款状态更新的 webhook 通知,回调详情参考 [订单支付通知](/api-reference/callback/payment-engine)     |
 | remark       | string         | 否     | 商户可对这笔支付订单做出备注【不超过256位字符】            |
-| valid_time       | integer         | 否     | 设置订单超时时间【单位/分钟】，区间【10-60】，如果未填写，系统默认设置为30分钟；            |
+| valid_time       | integer         | 是     | 设置订单超时时间【单位/分钟】，区间【10-60】            |
 | success_url | string | 是 | 付款成功后，点击“返回商店”按钮，付款人将被重定向到此 URL。请确保 URL 中包含“http://”或“https://”      |
 | cancel_url | string | 是 |  未付款并点击“取消”按钮，则重定向 URL。请确保 URL 中包含“http://”或“https://”   |
 
