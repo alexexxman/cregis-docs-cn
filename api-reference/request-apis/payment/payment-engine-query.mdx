@@ -53,7 +53,9 @@ POST /api/v2/order/info
 | cancel_time       | integer(int64) | 订单取消时间 【13位时间戳】                                  |
 | transact_time     | integer(int64) | 订单支付完成时间【到账时间 13位时间戳】                      |
 | valid_time        | integer(int64) | 提交订单时设置的超时时间【单位/分钟】                        |
-| status            | string         | 订单支付状态（new-待支付,paid-已支付，expired-订单超出有效时间，paid_over-付款超出订单金额  paid_partial-付款小于订单金额） |
+| status            | string         | 订单支付状态 <br/> new - 订单初始状态 <br/> paid - 订单已成功支付 <br/> expired - 订单超出有效时间 <br/> paid_over - 付款超出订单金额  <br/> paid_partial - 付款小于订单金额 |
+| refund_requested  | string         | 订单是否发生了退款 <br/> no：无退款申请记录 <br/> yes：有退款申请记录| 
+| refund_data | object | 退款订单相关讯息 |
 | payer_id          | string         | 付款人信息                                                   |
 | payer_name        | string         | 付款人名称                                                   |
 | payer_email       | string         | 付款人邮箱                                                   |
@@ -94,6 +96,29 @@ POST /api/v2/order/info
 | receive_currency | string  | 汇率转换后订单货币代码 |
 | exchange_rate    | string  | 货币汇率               |
 | asset_logo       | string  | 资产logo               |
+
+
+**refund_data object**
+
+| 名称                   | 类型    | 描述                   |
+| --------------------- | ------- | ---------------------- |
+| refund_id             | long    | Cregis退款订单编号      |
+| cregis_id             | long    | Cregis支付订单唯一编号   |
+| reference_id          | string  | 商家内部的原订单编号     |
+| recipient_id          | string  | 商家内部的客户编号       |
+| recipient_name        | string  | 退款收款人姓名          |
+| recipient_email       | string  | 退款收款人邮箱      |
+| recipient_address     | string  | 退款收款人的链上地址     |
+| token                 | string  | 退款订单的币种填入加密货币token_name，格式：USDT-BEP20，USDT-TRC20      |
+| network               | string  | 退款订单的网络 blockchain      |
+| refund_amount         | string  | 退款金额      |
+| refund_fee            | string  | 退款所需gas fee      |
+| actual_refund_amount  | string  | 扣减矿工费后的实际退款金额 = 退款订单金额amount - gas_fee_amount      |
+| type                  | int  | 退款类型 <br/> 1：部分退款 <br/> 2：全额退款      |
+| refund_status         | int  | 退款状态 <br/> 0: 退款处理中 <br/> 1：退款成功 <br/> 2：退款失败      |
+| refund_tx_id          | string  | 退款交易哈希      |
+| refund_created_time   | string  | 退款订单创建时间【13位时间戳】 <br/> e.g. 1720508269092 即 2024-07-09 14:57:49 092      |
+| refund_transact_time  | string  | 退款订单最后更新时间【13位时间戳】 <br/> e.g. 1720508269092 即 2024-07-09 14:57:49 092      |
 
 
 ###### 返回示例
