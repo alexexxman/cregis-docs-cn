@@ -26,6 +26,11 @@ POST /api/v2/checkout
 | payer_email       | string         | 否     | 付款⼈邮箱            |
 | tokens | ArrayString | 否 | 通过在tokens字段中输入相应的token_name来控制您允许客户支付的代币 <br /> 如果此字段留空，则表示您接受Cregis支持的所有代币作为客户的支付代币。可以通过 [查询支持加密货币](/api-reference/request-apis/payment/payment-crypto-currency)获得Cregis支付引擎中所有支持的代币 <br /> 示例: ["USDT-TRC20","USDT-BEP20"]  |
 | stablecoin_realtime_rate | string | 否 | 默认值：false <br />false：代表 USDT/USDC 兑 USD 使用固定1:1的汇率 <br />true：代表 USDT/USDC兑USD 使用从CoinMarketCap上获取的实时汇率  |
+| underpaid_tolerance | float | 否 | 部分支付限额，该订单可接受的支付金额容差下限，单位为原订单币种order_currency,如果不填入，则该字段默认值为0。<br/> 当订单实收金额在上下限容差范围内时，订单状态为“已付款”; <br/> 当订单实收金额低于订单应收金额减去部分支付限额时，订单状态为“部分付款”; <br/> 当订单实收金额高于订单应收金额加上超额支付限额时，订单状态为“超额付款” <br/> 例如：原order_currency为 HKD ， underpaid_tolerance传入：3.50，则代表订单少付3.50 HKD内仍视为可接受的范围，会返回"已支付"状态，如果少付款超过3.50 HKD，则会返回"部分支付"状态 |
+| overpaid_tolerance | float | 否 | 超额支付限额，该订单可接受的支付金额容差上限 ，单位为原订单币种order_currency，如果不填入，则该字段默认值为0。<br/> 当订单实收金额在上下限容差范围内时，订单状态为“已付款”; <br/> 当订单实收金额低于订单应收金额减去部分支付限额时，订单状态为“部分付款”; <br/> 当订单实收金额高于订单应收金额加上超额支付限额时，订单状态为“超额付款” <br/> 例如：原order_currency为 HKD ， overpaid_tolerance传入：3.50，则代表订单多付3.50 HKD内仍视为可接受的范围，会返回"已支付"状态，如果多付款超过3.50 HKD，则会返回"超额支付"状态 | 
+| accept_partial_payment | string | 否 | 默认值：true <br/> false:  如客户不接受部分支付，需要允许用户对未完整支付的订单进行补款或退款时，则需要传入false <br/> true：如客户可接受部分支付，不需要允许用户对未完整支付的订单进行补款或退款时，则需要传入true |
+| accept_over_payment | string | 否 | 默认值：true <br/> false：如客户希望允许用户对超额支付的订单进行退款时，则需要传入false <br/> true：如客户无需允许用户对超额支付的订单进行退款时，则需要传入true| 
+| language | string | 否 | 默认值：en <br/> 用于指定收银台或邮件的默认语言，可选值为：<br/> en - 英文 <br/> tc - 繁体中文 <br/> sc - 简体中文 | 
 | callback_url   | string         | 否     | 回调通知地址：Cregis 会向此地址发送付款状态更新的 webhook 通知,回调详情参考 [订单支付通知](/api-reference/callback/payment-engine)     |
 | remark       | string         | 否     | 商户可对这笔支付订单做出备注【不超过256位字符】            |
 | valid_time       | integer         | 是     | 设置订单超时时间【单位/分钟】，区间【10-60】            |
