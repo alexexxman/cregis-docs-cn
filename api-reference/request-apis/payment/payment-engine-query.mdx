@@ -47,12 +47,12 @@ POST /api/v2/order/info
 |----------------|----------------|------------------------|
 | cregis_id         | string         | cregis订单编号                                               |
 | order_id          | string         | 调用方订单编号                                               |
-| order_amount      | string         | 订单交易金额                                                 |
-| order_currency    | string         | 订单交易金额单位                                             |
-| created_time      | integer(int64) | 订单创建时间【13位时间戳】, 例如：1750407942433                                   |
-| cancel_time       | integer(int64) | 订单取消时间 【13位时间戳】, 例如：1750407942433                                      |
-| transact_time     | integer(int64) | 订单支付完成时间【13位时间戳】, 例如：1750407942433                          |
-| valid_time        | integer(int64) | 提交订单时设置的超时时间【单位/分钟】                        |
+| order_amount      | string         | 订单金额                                                 |
+| order_currency    | string         | 订单币种                                             |
+| created_time      | integer(int64) | 订单创建时间以13位unix时间戳格式 <br/> e.g. 1750407942433 , i.e. 2024-07-09 14:57:49 092     |
+| cancel_time       | integer(int64) | 订单取消时间以13位unix时间戳格式 <br/> e.g. 1750407942433 , i.e. 2024-07-09 14:57:49 092     |
+| transact_time     | integer(int64) | 订单完成时间以13位unix时间戳格式 <br/> e.g. 1750407942433 , i.e. 2024-07-09 14:57:49 092     |
+| valid_time        | integer(int64) | 单位：分钟（可填写：10 到 60 的整数） <br/> 订单的有效时间。如超过有效时间，将不可以再支付。           |
 | status            | string         | 订单支付状态 <br/> new - 订单初始状态 <br/> paid - 订单已成功支付 <br/> expired - 订单超出有效时间 <br/> paid_over - 付款超出订单金额  <br/> paid_partial - 付款小于订单金额 |
 | refund_requested  | string         | 订单是否发生了退款 <br/> no：无退款申请记录 <br/> yes：有退款申请记录| 
 | refund_data | object | 退款订单相关讯息 |
@@ -60,24 +60,49 @@ POST /api/v2/order/info
 | payer_name        | string         | 付款人名称                                                   |
 | payer_email       | string         | 付款人邮箱                                                   |
 | remark            | string         | 订单备注信息                                                 |
-| payment_detail    | array          | 交易信息数组                                                 |
-| payment_info      | array          | 地址信息数组                                                 |
+| payment_detail    | ArrayObject          | 付款记录                                                 |
+| payment_info      | ArrayObject          | 请求付款信息                                                 |
 | order_details     | Object         | 商品信息                                                     |
-| settlement_status | string         | 结算状态【unsettled /settling/settled】                      |
-| settlement_type   | string         | 结算类型 【system/manual】                                   |
-| sub_merchant      | string         | 子商户信息                                                   |
+| settlement_status | string         | 结算状态 <br/> - unsettled：尚未结算 <br/> - settling：正在结算 <br/> - settled：结算已完成     |
+| settlement_type   | string         | 结算类型 <br/> - system：自动结算 <br/> - manual：手动结算                                  |
+| sub_merchant      | Object         | 子商户信息                                                   |
+
+**order_details object**
+
+| 名称          | 类型    | 描述         |
+| ------------- | ------- | ------------ |
+| shopping_cost | decimal |  订单的运费     |
+| tax_cost      | decimal | 订单的税费       |
+| items         | ArrayObject   | 订单内购买商品的详情 |
+
+​**items object**
+
+| 名称           | 类型           | 描述                          |
+| -------------- | -------------- | ----------------------------- |
+| item_id        | string         |  商品唯一ID                        |
+| item_name      | string         |  商品名称                      |
+| item_price     | decimal        |  商品价格                      |
+| price_currency | string         |  商品币种                       |
+| item_quantity  | integer(int64) |  商品数量                      |
+
+**sub_merchant object**
+
+| 名称              | 类型   | 描述     |
+| ----------------- | ------ | -------- |
+| sub_merchant_id   | string | 子商户唯一编号   |
+| sub_merchant_name | string | 子商户名称 |
 
 **payment_detail object**
 
 | 名称             | 类型   | 描述                     |
 | ---------------- | ------ | ------------------------ |
 | payment_address  | string | 充值地址                 |
-| from_address     | string | from地址                 |
+| from_address     | string | 支付方地址                 |
 | receive_amount   | string | 汇率转换后的订单金额     |
-| receive_currency | string | 汇率转换后的订单货币代码 |
+| receive_currency | string | 汇率转换后的订单币种 |
 | pay_amount       | string | 实际到账金额             |
-| pay_currency     | string | 到账货币代码             |
-| exchange_rate    | string | 货币汇率                 |
+| pay_currency     | string | 到账币种             |
+| exchange_rate    | string | 汇率                 |
 | tx_id            | string | 交易hash                 |
 | blockchain       | string | 货币网络                 |
 | token_name       | string | 货币名称                 |
@@ -88,23 +113,23 @@ POST /api/v2/order/info
 | 名称             | 类型    | 描述                   |
 | ---------------- | ------- | ---------------------- |
 | payment_address  | string  | 充值地址               |
-| token_symbol     | string  | 货币标识               |
+| token_symbol     | string  | 币种。可参考订单建立中的tokens参数               |
 | blockchain       | string  | 货币网络               |
 | token_name       | string  | 货币名称               |
 | logo_url         | string  | 货币logo地址           |
 | token_decimals   | integer | 货币精度               |
-| receive_amount   | string  | 汇率转换后的订单金额   |
+| receive_amount   | string  | 汇率转换后的该收订单金额   |
 | receive_currency | string  | 汇率转换后订单货币代码 |
 | exchange_rate    | string  | 货币汇率               |
-| asset_logo       | string  | 资产logo               |
+| asset_logo       | string  | 币种标识logo               |
 
 
 **refund_data object**
 
 | 名称                   | 类型    | 描述                   |
 | --------------------- | ------- | ---------------------- |
-| refund_id             | long    | Cregis退款订单编号      |
-| cregis_id             | long    | Cregis支付订单唯一编号   |
+| refund_id             | integer(int64)    | Cregis退款订单编号      |
+| cregis_id             | string    | Cregis支付订单唯一编号   |
 | reference_id          | string  | 商家内部的原订单编号     |
 | recipient_id          | string  | 商家内部的客户编号       |
 | recipient_name        | string  | 退款收款人姓名          |
@@ -114,12 +139,12 @@ POST /api/v2/order/info
 | network               | string  | 退款订单的网络 blockchain      |
 | refund_amount         | string  | 退款金额      |
 | refund_fee            | string  | 退款所需gas fee      |
-| actual_refund_amount  | string  | 扣减矿工费后的实际退款金额 = 退款订单金额amount - gas_fee_amount      |
-| type                  | int  | 退款类型 <br/> 1：部分退款 <br/> 2：全额退款      |
-| refund_status         | int  | 退款状态 <br/> 0: 退款处理中 <br/> 1：退款成功 <br/> 2：退款失败      |
+| actual_refund_amount  | string  | 扣减矿工费后的实际退款金额      |
+| type                  | integer  | 退款类型 <br/> 1：代表 部分退款 <br/> 2：代表 全额退款      |
+| refund_status         | integer  | 退款状态 <br/> 0: 代表 退款处理中 <br/> 1：代表 退款成功 <br/> 2：代表 退款失败      |
 | refund_tx_id          | string  | 退款交易哈希      |
-| refund_created_time   | string  | 退款订单创建时间【13位时间戳】 <br/> e.g. 1720508269092 即 2024-07-09 14:57:49 092      |
-| refund_transact_time  | string  | 退款订单最后更新时间【13位时间戳】 <br/> e.g. 1720508269092 即 2024-07-09 14:57:49 092      |
+| refund_created_time   | string  | 退款订单创建时间以13位unix时间戳格式 <br/> e.g. 1720508269092 ,i.e. 2024-07-09 14:57:49 092      |
+| refund_transact_time  | string  | 退款订单最后更新时间以13位unix时间戳格式 <br/> e.g. 1720508269092 ,i.e. 2024-07-09 14:57:49 092      |
 
 
 ###### 返回示例

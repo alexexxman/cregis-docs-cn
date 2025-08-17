@@ -1,0 +1,34 @@
+---
+title: '支付货币列表'
+description: '系统支持的支付货币列表'
+---
+
+### 说明
+
+创建订单时可以根据需要选择支付指定加密货币名称（tokens参数）, 如付款人选择的付款加密货币币种与订单币种不同, 系统将使用 CoinMarketCap 提供的汇率进行实时换算。如tokens不传，将默认支持所有可支持的加密货币币种进行支付
+
+#### 加密货币
+| 加密货币名称   | 货币标识       | 网络      |
+|--------------|--------------|-----------|
+| USDT-TRC20   | USDT         | TRON      |
+| USDT-ERC20   | USDT         | Ethereum  |
+| USDT-BEP20   | USDT         | BSC       |
+| USDT-Polygon | USDT         | Polygon   |
+| USDT-Avalance| USDT         | Avalance  |
+| USDT-Arbitrum| USDT         | Arbitrum  |
+| USDC-ERC20   | USDC         | Ethereum  |
+| USDC-Solana  | USDC         | Solana    |
+| USDC-BEP20   | USDC         | BSC       |
+| USDC-Polygon | USDC         | Polygon   |
+| USDC-Avalance| USDC         | Avalance  |
+| USDC-Arbitrum| USDC         | Arbitrum  |
+| USDC-Optimism| USDC         | Optimism  |
+| USDC-Base    | USDC         | Base      |
+| BTC          | BTC          | Bitcoin   |
+| SOL          | SOL          | Solana    |
+| ETH-Ethereum | ETH          | Ethereum  |
+| ETH-Base     | ETH          | Base      |
+| ETH-Arbitrum | ETH          | Arbitrum  |
+| ETH-Optimism | ETH          | Optimism  |
+| TRX          | TRX          | TRON      |
+| BNB          | BNB          | BSC       |
