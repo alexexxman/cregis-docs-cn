@@ -72,11 +72,11 @@
           {
             "group": "支付引擎",
             "pages": [
-              "api-reference/request-apis/payment/payment-fiat-currency",
-              "api-reference/request-apis/payment/payment-crypto-currency",
               "api-reference/request-apis/payment/payment-engine-create",
               "api-reference/request-apis/payment/payment-engine-query",
-              "api-reference/callback/payment-engine"
+              "api-reference/callback/payment-engine",
+              "api-reference/request-apis/payment/payment-order-currency",
+              "api-reference/request-apis/payment/payment-pay-currency"
             ]
           }
         ]
