@@ -1,0 +1,78 @@
+---
+title: '发起提币申请（v2）'
+description: '发起提币请求，从钱包地址出款，支持从指定钱包指定地址出款'
+---
+
+### 接入 API
+
+POST /api/v2/payout
+
+### 请求
+
+#### 请求参数
+
+| 名称           | 类型           | 是否必须 | 描述        |
+| -------------- | -------------- | -------- | ------------------ |
+| pid            | integer(int64) | 是      | 创建的WaaS项目ID         |
+| wallet_id      | integer(int64) | 否      | 指定出款钱包ID，不传则默认使用该项目设置的默认出款钱包的默认付款地址进行出款，请参考[创建项目](https://support.cregis.com/cregis-wallet-guide/zh-cn/api/manual/creation)         |
+| currency       | string         | 是      | 币种标识 |
+| from_address   | string         | 否      | 发送方地址，不传则默认使用该项目设置的默认出款钱包的默认付款地址进行出款，请参考[创建项目](https://support.cregis.com/cregis-wallet-guide/zh-cn/api/manual/creation)             |
+| to_address     | string         | 是      | 接收方地址，在进行提币前建议先对接收方地址进行校验            |
+| amount         | string         | 是      | 提币金额             |
+| callback_url   | string         | 否      | 回调地址,该提币信息被处理时会向对应的callback_url发起回调通知,回调详情参考 [提币通知](/api-reference/callback/payout)   |
+| third_party_id | string         | 是      | 调用方业务编号，由您自己的业务系统生成 |
+| remark         | string         | 否      | 转账的描述。不超过256位字符             |
+| memo           | string         | 否      | memo、tag等上链信息，仅Ton、Xrp支持   |
+| nonce          | string         | 是      | 6位随机字符串  |
+| timestamp      | integer(int64) | 是      | 时间戳          |
+| sign           | string         | 是      | 签名          |
+
+###### 请求示例
+
+```json
+{
+  "pid": 1382528827416576,
+  "wallet_id": 11434198045401088,
+  "currency": "144@144",
+  "from_address": "rhAZ673nG6fSXovPAkw3EcrhKyWwXducoi",
+  "to_address": "rn5Jyu5J6PG64543KdGvS25rQBYFQo7GLc",
+  "amount": "1.1",
+  "remark": "payout",
+  "memo": "123",
+  "third_party_id": "c9231e604da54469a735af3f449c880f",
+  "callback_url": "http://xxx.com/payout/callback",
+  "nonce": "hwlkk6",
+  "timestamp": 1688004243314,
+  "sign": "d6eef2de79e39f434a38efb910213ba6"
+}
+```
+
+### 返回
+
+#### 返回结果
+
+| 名称  | 类型     | 描述          |
+| ----- | ------ | --------------------- |
+| code  | string | 返回状态码，成功码只有一个"code": "00000"，其他所有返回码都是表示执行出现异常，请参考[返回码](/api-reference/return-codes)           |
+| msg   | string | 返回信息        |
+| data  | object | 返回数据    |
+
+#### 返回数据 `data` 对象
+
+| 名称 | 类型             | 描述      |
+| ---- | -------------- | ---------------- |
+| cid  | integer(int64) | 系统流水号 |
+
+
+###### 返回示例
+
+```json
+{
+  "code": "00000",
+  "msg": "ok",
+  "data": {
+    "cid": 1382688606330880
+  }
+}
+```
+
