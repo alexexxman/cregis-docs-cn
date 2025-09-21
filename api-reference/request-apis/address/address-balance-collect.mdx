@@ -1,0 +1,66 @@
+---
+title: '地址资金归集'
+description: '发起项目子地址归集请求'
+---
+
+### 接入 API
+
+POST /api/v1/collection
+
+### 请求
+
+#### 请求参数
+
+| 名称           | 类型            | 是否必须 | 描述   |
+| ------------- | --------------- | -------- | ------------- |
+| pid           | integer(int64)  | 是      | 项目编号   |
+| currency      | string          | 是      | 查询的代币标识，chain_id@token_id |
+| from_address  | string          | 是      | 需要归集的项目地址，地址禁用状态不允许归集            |
+| to_address    | string          | 是      | 归集接收地址，必须是当前项目地址绑定钱包中的地址            |
+| amount        | string          | 否      | 归集金额，不传默认归集地址所有资金  |
+| nonce         | string          | 是      | 6位随机字符串 |
+| timestamp     | integer(int64)  | 是      | 时间戳     |
+| sign          | string          | 是      | 签名串     |
+
+###### 请求示例
+
+```json
+{
+  "pid": 1382528827416576,
+  "currency": "195@195",
+  "from_address": "TJ6j9CosgGRxuVwuMFsxKwuqbUFaSd1SZr",
+  "to_address": "TFVjBSg1dzszYSyB1dNx4cQnxaD6bHYCE1",
+  "amount": "1.1",
+  "nonce": "hwlkk6",
+  "timestamp": 1688004243314,
+  "sign": "d6eef2de79e39f434a38efb910213ba6"
+}
+```
+### 返回
+
+#### 返回结果
+
+| 名称  | 类型   | 描述      |
+| ----- | ------ | ---------------- |
+| code  | string | 返回码    |
+| msg   | string | 返回信息 |
+| data  | object | 返回数据 |
+
+#### 返回数据 `data` 对象
+
+| 名称    | 类型   | 描述 |
+| ------- | ------ | ----------- |
+| cid     | integer(int64) | Cregis 系统流水号     |
+
+###### 返回示例
+
+```json
+{
+  "code": "00000",
+  "msg": "ok",
+  "data": {
+    "cid": 1382528827416576
+  }
+}
+```
+
