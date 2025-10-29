@@ -49,7 +49,8 @@ POST /api/v1/payout/query
 | chain_id       | string         | 链编号               |
 | token_id       | string         | 代币编号               |
 | currency       | string         | 币种标识    |
-| address        | string         | 地址                |
+| from_address   | string         | 发送方地址                |
+| address        | string         | 接收方地址                |
 | amount         | string         | 金额                 |
 | status         | integer(int32) | 状态                 |
 | third_party_id | string         | 调用方业务编号   |
@@ -80,6 +81,7 @@ POST /api/v1/payout/query
   "msg": "ok",
   "data": {
     "pid": 1382528827416576,
+    "from_address": "TRsYEaEd1UbNsoXDza3jyJTnwavk6iWBdk",
     "address": "TXsmKpEuW7qWnXzJLGP9eDLvWPR2GRn1FS",
     "chain_id": "195",
     "token_id": "195",
